@@ -1,0 +1,8 @@
+        Prefix Verb   URI Pattern             Controller#Action
+v1_to_do_index GET    /v1/to_do(.:format)     v1/to_do#index
+               POST   /v1/to_do(.:format)     v1/to_do#create
+      v1_to_do GET    /v1/to_do/:id(.:format) v1/to_do#show
+               PATCH  /v1/to_do/:id(.:format) v1/to_do#update
+               PUT    /v1/to_do/:id(.:format) v1/to_do#update
+               DELETE /v1/to_do/:id(.:format) v1/to_do#destroy
+                      /v1/to_do/socket        #<ActionCable::Server::Base:0x00000000075afa80 @mutex=#<Monitor:0x00000000075afa58 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x00000000075af9b8>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>

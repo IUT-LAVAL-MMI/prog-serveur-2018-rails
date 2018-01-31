@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :to_do
   end
+  mount ActionCable.server => '/todo/socket'
 end

@@ -7,19 +7,22 @@ module V1
 
     def create
       @todo = ToDo.create(to_do_params)
-      render json: @todo
+      ToDoMessageMulticastJob.perform_later 'v1', 'edit', @todo.as_json
+      head :no_content, status: :accepted
     end
 
     def update
       @todo = ToDo.find(params[:id])
       @todo&.update_attributes(to_do_update_params)
-      render json: @todo
+      ToDoMessageMulticastJob.perform_later 'v1', 'update', @todo.as_json
+      head :no_content, status: :accepted
     end
 
     def destroy
       @todo = ToDo.find(params[:id])
       if @todo.destroy
-        head :no_content, status: :ok
+        ToDoMessageMulticastJob.perform_later 'v1', 'delete', @todo.as_json
+        head :no_content, status: :accepted
       else
         render json: @todo.errors, status: :unprocessable_entity
       end
